@@ -1,0 +1,111 @@
+#include "TelloClientUDP.h"
+#include "IRClientUDP.h"
+#include "IRServeurUDP.h"
+
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+TelloClientUDP::TelloClientUDP(string ip)
+{
+	tello.OuvrirLaSocketDeCommunication(ip,8889);
+
+}
+
+string TelloClientUDP::EnvoyerCommande(string commande)
+{
+	tello.EnvoyerUnMessage(commande);
+
+	string msg;
+
+	ecoute.OuvrirLaSocketDEcoute(8890,"0.0.0.0");
+	ecoute.RecevoirUnMessage(msg,1000)
+	ecoute.FermerLaSocket();
+
+	return msg;
+}
+
+string TelloClientUDP::ModeCommande()
+{
+	cmd="command";
+	return EnvoyerCommande(cmd);
+}
+
+string TelloClientUDP::Decoller()
+{
+	cmd="takeoff";
+	return EnvoyerCommande(cmd);
+}
+
+string TelloClientUDP::Atterir()
+{
+	cmd="land";
+	return EnvoyerCommande(cmd);
+}
+
+string TelloClientUDP::Monter(int cm)
+{
+	sst.str("");
+	sst<<cm;
+	cmd="up " + sst.str();
+	return EnvoyerCommande(cmd);
+}
+
+string TelloClientUDP::Descendre(int cm)
+{
+	sst.str("");
+	sst<<cm;
+	cmd="down " + sst.str();
+	return EnvoyerCommande(cmd);
+}
+
+string TelloClientUDP::Gauche(int cm)
+{
+	sst.str("");
+	sst<<cm;
+	cmd="left " + sst.str();
+	return EnvoyerCommande(cmd);
+}
+
+string TelloClientUDP::Droite(int cm)
+{
+	sst.str("");
+	sst<<cm;
+	cmd="right " + sst.str();
+	return EnvoyerCommande(cmd);
+}
+
+string TelloClientUDP::Avant(int cm)
+{
+	sst.str("");
+	sst<<cm;
+	cmd="forward " + sst.str();
+	return EnvoyerCommande(cmd);
+}
+
+string TelloClientUDP::Arriere(int cm)
+{
+	sst.str("");
+	sst<<cm;
+	cmd="back " + sst.str();
+	return EnvoyerCommande(cmd);
+}
+
+string TelloClientUDP::TournerHoraire(int deg)
+{
+	sst.str("");
+	sst<<deg;
+	cmd="cw " + sst.str();
+	return EnvoyerCommande(cmd);
+}
+
+string TelloClientUDP::TournerTrigo(int deg)
+{
+	sst.str("");
+	sst<<deg;
+	cmd="ccw " + sst.str();
+	return EnvoyerCommande(cmd);
+}
+

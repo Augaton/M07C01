@@ -1,0 +1,25 @@
+#include <cstdlib>
+#include "IRClientUDP.h"
+#include <string>
+
+using namespace std;
+
+class TelloClientUDP
+{	private :
+	IRClientUDP tello;
+
+	public:
+	TelloClientUDP(string ip );
+	string EnvoyerCommande(string commande);
+	string ModeCommande();
+	string Decoller();
+	string Atterir();
+	string Monter(int cm);
+	string Descendre(int cm);
+	string Gauche(int cm);
+	string Droite(int cm);
+	string Avant(int cm);
+	string Arriere(int cm);
+	string TournerHoraire(int deg);
+	string TournerTrigo(int deg);
+};
