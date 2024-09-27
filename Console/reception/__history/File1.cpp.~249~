@@ -1,0 +1,153 @@
+#pragma hdrstop
+#pragma argsused
+
+#ifdef _WIN32
+#include <tchar.h>
+#else
+  typedef char _TCHAR;
+  #define _tmain main
+#endif
+
+#include <stdio.h>
+#include "IRServeurUDP.h"
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <fstream>
+
+using namespace std;
+
+string entetejson(string leJSON)
+{
+		// retirer le \n\r
+
+	string x = "\n\r";
+	string y = "";
+
+	size_t pos = leJSON.find(x);
+	while (pos != string::npos)
+	{
+		leJSON.replace(pos, x.size(), y);
+		pos = leJSON.find(x, pos + y.size());
+	}
+
+	// moyen simple d'enlever le dernier
+
+	leJSON.replace(leJSON.length() - 3,1,"\" }");
+
+	// entete
+
+	leJSON = "{ \"" + leJSON;
+
+	// remplacement ":"
+
+	x = ":";
+	y = "\":\"";
+
+	pos = leJSON.find(x);
+	while (pos != string::npos)
+	{
+		leJSON.replace(pos, x.size(), y);
+		pos = leJSON.find(x, pos + y.size());
+	}
+
+	// remplacement ";"
+
+	x = ";";
+	y = "\", \"";
+
+	pos = leJSON.find(x);
+	while (pos != string::npos)
+	{
+		leJSON.replace(pos, x.size(), y);
+		pos = leJSON.find(x, pos + y.size());
+	}
+
+	return leJSON;
+}
+
+ int _tmain(int argc, _TCHAR* argv[])
+{
+
+	IRServeurUDP ecoute;
+	ofstream jsonlog;
+	ofstream txtlog;
+	stringstream ss;
+
+	char octects[300];
+	int recusmsg;
+	string recusmsgstring;
+
+	ecoute.OuvrirLaSocketDEcoute(8890,"0.0.0.0");
+
+	jsonlog.open ("drone.json");
+	txtlog.open("logdrone.txt")
+
+	recusmsg = ecoute.RecevoirUnMessage(recusmsgstring,1000000);
+	if (recusmsg == 0) {
+		cout << "aucun message recus, arret du programme, appuyer sur n'importe quel touche pour continuer ..." << endl;
+		cin.get();
+		return false;
+	}
+	ecoute.RecevoirDesOctets(octects,300);
+
+	string leJSON = octects;
+
+	leJSON = entetejson(leJSON);
+
+	// hexa
+
+	// ss << hex << leJSON;
+	// cout << ss << endl << endl;
+
+	// suite
+
+	string donneesvolentete =  "{ \"donneesVol\": {";
+
+	string nomentete = "\"nom\": \"Moi\",";
+	string numeroentete = "\"numero\": \"TEST\",";
+
+	stringstream stimestamp;
+	int timestamp = (int)time(NULL);
+	stimestamp<< "\"time\": \"";
+	stimestamp<<timestamp<<"\",";
+
+	string etatsentete =  "\"etats\": [";
+
+	leJSON = donneesvolentete + nomentete + numeroentete + stimestamp.str() + etatsentete + leJSON;
+
+	// fin entete
+
+	jsonlog << leJSON;
+	cout << leJSON;
+
+
+	do{
+
+		recusmsg = ecoute.RecevoirUnMessage(recusmsgstring,1000000);
+		if (recusmsg == 0) {
+			break;
+		}
+		else
+		{
+			ecoute.RecevoirDesOctets(octects,300);
+        }
+		string donnees = octects;
+		txtlog = octects;
+
+		leJSON = "," + entetejson(donnees);
+
+		jsonlog << leJSON;
+		cout << leJSON;
+
+	}while(recusmsg > 0);
+
+	leJSON = "]}}";
+
+	jsonlog << leJSON;
+	cout << leJSON;
+
+	jsonlog.close();
+
+	return 0;
+}

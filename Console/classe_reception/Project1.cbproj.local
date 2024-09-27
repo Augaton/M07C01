@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2024/09/27 11:47:25.006,=C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\Project1PCH1.h</Transaction>
+    <Transaction>2024/09/27 11:47:25.017,=C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\File1.cpp</Transaction>
+    <Transaction>2024/09/27 11:48:03.126,C:\Users\AMuller.LLA\Desktop\M07\M07C01\Console\classe_reception\File1.cpp=C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\File1.cpp</Transaction>
+    <Transaction>2024/09/27 11:48:04.628,C:\Users\AMuller.LLA\Desktop\M07\M07C01\Console\classe_reception\Project1PCH1.h=C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\Project1PCH1.h</Transaction>
+    <Transaction>2024/09/27 11:48:05.533,C:\Users\AMuller.LLA\Desktop\M07\M07C01\Console\classe_reception\Project1.cbproj=C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\Project1.cbproj</Transaction>
+    <Transaction>2024/09/27 11:48:23.632,=C:\Users\AMuller.LLA\Desktop\M07\M07C01\Console\classe_reception\IRServeurUDP.cpp</Transaction>
+    <Transaction>2024/09/27 11:48:23.635,=C:\Users\AMuller.LLA\Desktop\M07\M07C01\Console\classe_reception\IRServeurUDP.h</Transaction>
+    <Transaction>2024/09/27 11:48:47.664,=C:\Users\AMuller.LLA\Desktop\M07\M07C01\Console\classe_reception\File2.h</Transaction>
+    <Transaction>2024/09/27 11:48:58.165,C:\Users\AMuller.LLA\Desktop\M07\M07C01\Console\classe_reception\ServeurDonneeDrone.h=C:\Users\AMuller.LLA\Desktop\M07\M07C01\Console\classe_reception\File2.h</Transaction>
+  </Transactions>
+</BorlandProject>

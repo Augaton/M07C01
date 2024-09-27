@@ -17,92 +17,139 @@
 
 using namespace std;
 
-string replace(char c, string replacement, string const& s)
+string entetejson(string leJSON)
 {
-    string result;
-    size_t searchStartPos = 0;
+		// retirer le \n\r
 
-    string chars = string("\\") + c;
-    size_t pos = s.find_first_of(chars);
-    while (pos != string::npos)
-    {
-        result += s.substr(searchStartPos, pos - searchStartPos);
-        if (s[pos] == '\\')
-        {
-            result += string("\\") + c;
-            searchStartPos = pos + 2;
-        }
-        else if (s[pos] == c)
-        {
-            result += replacement;
-            searchStartPos = pos + 1;
-        }
+	string x = "\n\r";
+	string y = "";
 
-        pos = s.find_first_of(chars, searchStartPos);
-    }
+	size_t pos = leJSON.find(x);
+	while (pos != string::npos)
+	{
+		leJSON.replace(pos, x.size(), y);
+		pos = leJSON.find(x, pos + y.size());
+	}
 
-    return result;
+	// moyen simple d'enlever le dernier
+
+	leJSON.replace(leJSON.length() - 3,1,"\" }");
+
+	// entete
+
+	leJSON = "{ \"" + leJSON;
+
+	// remplacement ":"
+
+	x = ":";
+	y = "\":\"";
+
+	pos = leJSON.find(x);
+	while (pos != string::npos)
+	{
+		leJSON.replace(pos, x.size(), y);
+		pos = leJSON.find(x, pos + y.size());
+	}
+
+	// remplacement ";"
+
+	x = ";";
+	y = "\", \"";
+
+	pos = leJSON.find(x);
+	while (pos != string::npos)
+	{
+		leJSON.replace(pos, x.size(), y);
+		pos = leJSON.find(x, pos + y.size());
+	}
+
+	return leJSON;
 }
 
  int _tmain(int argc, _TCHAR* argv[])
 {
 
 	IRServeurUDP ecoute;
-	ofstream myfile;
+	ofstream jsonlog;
+	ofstream txtlog;
 	stringstream ss;
 
 	char octects[300];
+	int recusmsg;
+	string recusmsgstring;
 
 	ecoute.OuvrirLaSocketDEcoute(8890,"0.0.0.0");
 
-	myfile.open ("drone_log.txt");
+	jsonlog.open ("drone.json");
+	txtlog.open("logdrone.txt");
+
+	recusmsg = ecoute.RecevoirUnMessage(recusmsgstring,1000000);
+	if (recusmsg == 0) {
+		cout << "aucun message recus, arret du programme, appuyer sur n'importe quel touche pour continuer ..." << endl;
+		cin.get();
+		return false;
+	}
+	ecoute.RecevoirDesOctets(octects,300);
+
+	string leJSON = octects;
+
+	leJSON = entetejson(leJSON);
+
+	// hexa
+
+	// ss << hex << leJSON;
+	// cout << ss << endl << endl;
+
+	// suite
+
+	string donneesvolentete =  "{ \"donneesVol\": {";
+
+	string nomentete = "\"nom\": \"Moi\",";
+	string numeroentete = "\"numero\": \"TEST\",";
+
+	stringstream stimestamp;
+	int timestamp = (int)time(NULL);
+	stimestamp<< "\"time\": \"";
+	stimestamp<<timestamp<<"\",";
+
+	string etatsentete =  "\"etats\": [";
+
+	leJSON = donneesvolentete + nomentete + numeroentete + stimestamp.str() + etatsentete + leJSON;
+
+	// fin entete
+
+	jsonlog << leJSON;
+	txtlog << octects;
+	cout << leJSON;
+
 
 	do{
-		ecoute.RecevoirDesOctets(octects,300);
-		string msg = octects;
 
-		size_t found=msg.find("\n\r");
-		if (found!=string::npos)
-		{
-			msg.erase(found);
+		recusmsg = ecoute.RecevoirUnMessage(recusmsgstring,1000000);
+		if (recusmsg == 0) {
+			break;
 		}
-
-		msg.replace(msg.length() - 1,1,"\" }");
-
-		string x = ":";
-		string y = "\":\"";
-
-		size_t pos = msg.find(x);
-		while (pos != string::npos)
+		else
 		{
-			msg.replace(pos, x.size(), y);
-			pos = msg.find(x, pos + y.size());
-		}
+			ecoute.RecevoirDesOctets(octects,300);
+        }
+		string donnees = octects;
+		txtlog << octects;
 
-		x = ";";
-		y = "\", \"";
+		leJSON = "," + entetejson(donnees);
 
-		pos = msg.find(x)
-		while (pos != string::npos)
-		{
-			msg.replace(pos, x.size(), y);
-			pos = msg.find(x, pos + y.size());
-		}
+		jsonlog << leJSON;
+		cout << leJSON;
 
+	}while(recusmsg > 0);
 
-		myfile << msg;
-		cout << msg;
+	leJSON = "]}}";
 
-        // hexa
+	jsonlog << leJSON;
+	cout << leJSON;
 
-		// ss << hex << msg;
-		// cout << ss << endl << endl;
-
-
-
-	}while(octects > 0);
-
-	myfile.close();
+	txtlog.close();
+	jsonlog.close();
 
 	return 0;
 }

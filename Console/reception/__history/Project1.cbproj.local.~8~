@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/09/25 16:40:54.000.770,=C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\File1.cpp</Transaction>
+    <Transaction>2024/09/25 16:40:54.000.761,=C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\Project1PCH1.h</Transaction>
+    <Transaction>2024/09/25 16:41:59.000.900,C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\File1.cpp=C:\Users\AMuller.LLA\Desktop\M07\Console\reception\File1.cpp</Transaction>
+    <Transaction>2024/09/25 16:48:28.000.831,=C:\Users\AMuller.LLA\Desktop\M07\Console\reception\IRServeurUDP.cpp</Transaction>
+    <Transaction>2024/09/25 16:48:28.000.835,=C:\Users\AMuller.LLA\Desktop\M07\Console\reception\IRServeurUDP.h</Transaction>
+    <Transaction>2024/09/25 16:48:53.000.871,C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\Project1PCH1.h=C:\Users\AMuller.LLA\Desktop\M07\Console\reception\Project1PCH1.h</Transaction>
+    <Transaction>2024/09/25 16:48:54.000.580,C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\Project1.cbproj=C:\Users\AMuller.LLA\Desktop\M07\Console\reception\Project1.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>
