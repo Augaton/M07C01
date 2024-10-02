@@ -9,8 +9,26 @@
 #endif
 
 #include <stdio.h>
+#include "ServeurDonneeDrone.h"
+// sleep function
+#include <iostream>
 
- int _tmain(int argc, _TCHAR* argv[]) 
-{
+// Library effective with Windows
+#include <windows.h>
+
+
+int main()
+{ 
+	ServeurDonneeDrone serveurDonnee("iervese","C3B3FC");
+	int n;
+	bool enAttente=true;
+	do
+	{ 
+		Sleep(100);
+		n=serveurDonnee.RecevoirDonneesDrone();
+	}while(n>0);
+	
+	serveurDonnee.EnvoyerDonneesBDD("172.20.21.201","/~aurelien/M07S/restTello.php/vol");
+	cin.get();
 	return 0;
 }

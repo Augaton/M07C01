@@ -95,6 +95,12 @@
         <CppCompile Include="File1.cpp">
             <BuildOrder>1</BuildOrder>
         </CppCompile>
+        <CppCompile Include="IRClientTCP.cpp">
+            <BuildOrder>6</BuildOrder>
+        </CppCompile>
+        <None Include="IRClientTCP.h">
+            <BuildOrder>7</BuildOrder>
+        </None>
         <CppCompile Include="IRServeurUDP.cpp">
             <BuildOrder>2</BuildOrder>
         </CppCompile>
@@ -104,6 +110,9 @@
         <PCHCompile Include="Project1PCH1.h">
             <BuildOrder>0</BuildOrder>
         </PCHCompile>
+        <CppCompile Include="ServeurDonneeDrone.cpp">
+            <BuildOrder>5</BuildOrder>
+        </CppCompile>
         <None Include="ServeurDonneeDrone.h">
             <BuildOrder>4</BuildOrder>
         </None>

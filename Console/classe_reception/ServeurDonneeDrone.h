@@ -1,29 +1,31 @@
 #include <cstdlib>
 #include "IRServeurUDP.h"
+#include "IRClientTCP.h"
 #include <string>
 #include <sstream>
+#include <fstream>
 
 using namespace std;
 
 class ServeurDonneeDrone
 {	private :
-	IRServeurUDP ecoute;
-	stringstream sst;
-	string cmd;
+	ofstream fichierLog;
+	IRServeurUDP serveurUDP;
+	IRClientTCP clienttcp;
+	string leJSON;
+	char octects[300];
+	string recusmsgstring;
+	int recus;
 
 	public:
 	ServeurDonneeDrone(string pilote, string numeroDrone );
-	void AjouterDonneesJSON(string message);
+	void OuvrirFichierLog(string nomFichier);
+	void AjoutFichierLog(string texte);
 	void FermerFichierLog();
 	int RecevoirDonneesDrone();
-	void AjoutFichierLog(string texte);
-	void AjoutDonn(string texte);
-	string DebuterJSON(int cm);
-	string CloreJSON(int cm);
-	string Gauche(int cm);
-	string Droite(int cm);
-	string Avant(int cm);
-	string Arriere(int cm);
-	string TournerHoraire(int deg);
-	string TournerTrigo(int deg);
+	void CreerJSON(string pilote, string numeroDrone);
+	void EnvoyerDonneesBDD(string IPREST,string urlREST);
+	void DebuterJSON(string pilote, string numeroDrone);
+	void AjouterDonneesJSON(string message);
+	void CloreJSON();
 };

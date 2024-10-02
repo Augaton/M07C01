@@ -83,9 +83,9 @@ string entetejson(string leJSON)
 	jsonlog.open ("drone.json");
 	txtlog.open("logdrone.txt");
 
-	recusmsg = ecoute.RecevoirUnMessage(recusmsgstring,1000000);
+	recusmsg = ecoute.RecevoirUnMessage(recusmsgstring,100000);
 	if (recusmsg == 0) {
-		cout << "aucun message recus, arret du programme, appuyer sur n'importe quel touche pour continuer ..." << endl;
+		cout << "timeout" << endl;
 		cin.get();
 		return false;
 	}

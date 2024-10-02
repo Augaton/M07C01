@@ -1,0 +1,39 @@
+#pragma hdrstop
+#pragma argsused
+
+#ifdef _WIN32
+#include <tchar.h>
+#else
+  typedef char _TCHAR;
+  #define _tmain main
+#endif
+
+#include <stdio.h>
+#include "ServeurDonneeDrone.h"
+// sleep function
+#include <iostream>
+
+// Library effective with Windows
+#include <windows.h>
+
+
+ int _tmain(int argc, _TCHAR* argv[]) 
+{
+	int main()
+
+	ServeurDonneeDrone serveurDonnee("iervese","C3B3FC");
+	int n;
+
+	bool enAttente=true;
+
+	do
+	{
+		Sleep(100);
+		n=serveurDonnee.RecevoirDonneesDrone();
+		if(n>0) enAttente=false;
+		}while(n>0 || enAttente);
+		CloreJSON();
+		cin.get();
+		return 0;
+	}
+}
