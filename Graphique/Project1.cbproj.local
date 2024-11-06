@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/11/04 09:07:09.000.621,=C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\Unit1.cpp</Transaction>
+    <Transaction>2024/11/04 09:07:09.000.074,=C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\Project1PCH1.h</Transaction>
+    <Transaction>2024/11/04 09:07:32.000.892,C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\Unit1.dfm=C:\Users\AMuller.LLA\Desktop\M07C01-main\Graphique\Unit1.dfm</Transaction>
+    <Transaction>2024/11/04 09:07:32.000.892,C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\Unit1.h=C:\Users\AMuller.LLA\Desktop\M07C01-main\Graphique\Unit1.h</Transaction>
+    <Transaction>2024/11/04 09:07:32.000.907,C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\Project1.cbproj=C:\Users\AMuller.LLA\Desktop\M07C01-main\Graphique\Project1.cbproj</Transaction>
+    <Transaction>2024/11/04 09:07:32.000.892,C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\Project1PCH1.h=C:\Users\AMuller.LLA\Desktop\M07C01-main\Graphique\Project1PCH1.h</Transaction>
+    <Transaction>2024/11/04 09:07:32.000.892,C:\Users\AMuller.LLA\Documents\Embarcadero\Studio\Projets\Unit1.cpp=C:\Users\AMuller.LLA\Desktop\M07C01-main\Graphique\Unit1.cpp</Transaction>
+    <Transaction>2024/11/04 09:15:58.000.938,=C:\Users\AMuller.LLA\Desktop\M07C01-main\Graphique\IRServeurUDP.cpp</Transaction>
+    <Transaction>2024/11/04 09:15:58.000.766,=C:\Users\AMuller.LLA\Desktop\M07C01-main\Graphique\IRClientUDP.cpp</Transaction>
+    <Transaction>2024/11/04 09:15:58.000.844,=C:\Users\AMuller.LLA\Desktop\M07C01-main\Graphique\IRClientUDP.h</Transaction>
+    <Transaction>2024/11/04 09:15:59.000.110,=C:\Users\AMuller.LLA\Desktop\M07C01-main\Graphique\TelloClientUDP.cpp</Transaction>
+    <Transaction>2024/11/04 09:15:59.000.391,=C:\Users\AMuller.LLA\Desktop\M07C01-main\Graphique\IRClientTCP.h</Transaction>
+    <Transaction>2024/11/04 09:15:59.000.016,=C:\Users\AMuller.LLA\Desktop\M07C01-main\Graphique\IRServeurUDP.h</Transaction>
+    <Transaction>2024/11/04 09:15:59.000.297,=C:\Users\AMuller.LLA\Desktop\M07C01-main\Graphique\IRClientTCP.cpp</Transaction>
+    <Transaction>2024/11/04 09:15:59.000.204,=C:\Users\AMuller.LLA\Desktop\M07C01-main\Graphique\TelloClientUDP.h</Transaction>
+  </Transactions>
+</BorlandProject>
